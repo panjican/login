@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pino.login.dao.LoginMapper">
+    <insert id="register">
+        INSERT IGNORE INTO login(name, password, login_time, create_time)
+        VALUES(#{name}, #{password}, #{loginTime}, #{createTime})
+    </insert>
+
+    <select id="login" resultType="com.pino.login.entity.Login">
+        SELECT l.* FROM login as l WHERE name = #{name} and password = #{password} LIMIT 1
+    </select>
+
+    <update id="updateTime">
+        UPDATE  login SET login_time = #{loginTime} where user_id = #{userId}
+    </update>
+</mapper>
